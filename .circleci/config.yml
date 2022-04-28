@@ -35,10 +35,18 @@ jobs:
 workflows:
   lint_test_build_deploy:
     jobs:
-      - lint
+      - lint:
+          filters:
+            branches:
+              only:
+                - master
       - unit:
           requires:
             - lint
+          filters:
+            branches:
+              only:
+                - master
       - build:
           requires:
             - unit
