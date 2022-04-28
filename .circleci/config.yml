@@ -32,11 +32,18 @@ jobs:
 workflows:
   unit:
     jobs:
-      - unit
+      - unit:
+        filters:
+            branches:
+              ignore:
+                - master
 
   deploy:
     jobs:
+      - unit
       - build:
+          requires:
+            - unit
           filters:
             branches:
               only:
