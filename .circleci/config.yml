@@ -30,12 +30,13 @@ jobs:
           to: 's3://farrung.com/'
 
 workflows:
-  unit_and_deploy:
+  unit:
     jobs:
       - unit
+
+  deploy:
+    jobs:
       - build:
-          requires:
-            - unit
           filters:
             branches:
               only:
