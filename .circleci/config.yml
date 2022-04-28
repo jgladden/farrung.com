@@ -38,16 +38,3 @@ workflows:
             branches:
               only:
                 - master
-      - unit_test:
-          requires:
-            - lint_project
-          filters:
-            branches:
-              only:
-                - master
-      - build_deploy:
-          requires:
-            - unit_test
-          filters:
-            branches:
-              only: master
