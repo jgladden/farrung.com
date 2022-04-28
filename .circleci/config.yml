@@ -4,15 +4,17 @@ orbs:
 
 jobs:
   lint:
-    executor: circleci/node:12.9.1-browsers
+    docker:
+      - image: circleci/node:12-browsers
     working_directory: ~/repo
     steps:
       - checkout
       - run: yarn install --frozen-lockfile
       - run: yarn lint
 
-  test:
-    executor: circleci/node:12.9.1-browsers
+  unit:
+    docker:
+      - image: circleci/node:12-browsers
     working_directory: ~/repo
     steps:
       - checkout
@@ -20,7 +22,8 @@ jobs:
       - run: yarn test
 
   build:
-    executor: circleci/node:12.9.1-browsers
+    docker:
+      - image: circleci/node:12-browsers
     working_directory: ~/repo
     steps:
       - checkout
@@ -30,15 +33,15 @@ jobs:
           to: farrung.com
 
 workflows:
-  version: 2.1
   lint_test_build_deploy:
     jobs:
       - lint
-      - test:
-        requires: -lint
+      - unit:
+          requires:
+            - lint
       - build:
           requires:
-            - test
+            - unit
           filters:
             branches:
               only: master
