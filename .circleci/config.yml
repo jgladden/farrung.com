@@ -17,7 +17,7 @@ jobs:
           paths:
             - .
 
-  build:
+  deploy:
     docker:
       - image: circleci/node:16-browsers
     working_directory: ~/repo
@@ -30,10 +30,10 @@ jobs:
           to: 's3://farrung.com/'
 
 workflows:
-  deploy:
+  workflow:
     jobs:
       - unit
-      - build:
+      - deploy:
           requires:
             - unit
           filters:
