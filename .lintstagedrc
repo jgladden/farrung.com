@@ -1,0 +1,7 @@
+"packages/*/src/**/*.{js,jsx,ts,tsx}":
+  - prettier --write
+  - eslint
+  - git add
+"packages/*/src/**/*.{json,css,md}":
+  - prettier --write
+  - git add
