@@ -30,7 +30,7 @@ jobs:
       - run: yarn build
       - aws-s3/sync:
           from: build
-          to: farrung.com
+          to: "s3://farrung.com/"
 
 workflows:
   lint_test_build_deploy:
