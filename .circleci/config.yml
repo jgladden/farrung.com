@@ -29,9 +29,9 @@ jobs:
           to: 's3://farrung.com/'
 
 workflows:
-  build_and_deploy:
+  unit_and_deploy:
     jobs:
       - unit
-      - deploy:
+      - build:
           requires:
             - unit
