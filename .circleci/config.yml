@@ -27,3 +27,11 @@ jobs:
       - aws-s3/sync:
           from: build
           to: 's3://farrung.com/'
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - unit
+      - deploy:
+          requires:
+            - unit
