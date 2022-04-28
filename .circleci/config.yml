@@ -1,57 +1,44 @@
 version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@1.0.11
+
 jobs:
-  build:
+  lint:
+    executor: circleci/node:12.9.1-browsers
     working_directory: ~/repo
-    docker:
-      - image: circleci/node:12-browsers
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install dependencies
-          command: npm install
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Build
-          command: |
-            if [ $CIRCLE_BRANCH = 'master' ]; then
-              npm run build
-            fi
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-  deploy:
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+
+  test:
+    executor: circleci/node:12.9.1-browsers
     working_directory: ~/repo
-    docker:
-      - image: innovatorjapan/awscli:latest
     steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Deploy
-          command: |
-            if [ $CIRCLE_BRANCH = 'master' ]; then
-              aws s3 sync build s3://farrung.com --delete --exact-timestamps;
-            fi
+      - checkout
+      - run: yarn typecheck
+      - run: yarn test
+
+  build:
+    executor: circleci/node:12.9.1-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: yarn build
+      - aws-s3/sync:
+          from: build
+          to: farrung.com
+
 workflows:
-  build_and_deploy:
+  version: 2.1
+  lint_test_build_deploy:
     jobs:
+      - lint
+      - test:
+        requires: -lint
       - build:
-          filters:
-            branches:
-              only:
-                - master
-      - deploy:
           requires:
-            - build
+            - test
           filters:
             branches:
-              only:
-                - master
+              only: master
