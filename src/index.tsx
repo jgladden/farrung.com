@@ -1,13 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
-import App from './App'
 import reportWebVitals from './reportWebVitals'
+
+import './index.css'
+import { ThemeProvider } from 'styled-components'
+import theme from './components/constants/theme'
+
+import ErrorBoundry from './components/ErrorBoundry'
+import App from './components/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundry>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </ErrorBoundry>
   </React.StrictMode>
 )
 
