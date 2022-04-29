@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals'
 
 import './index.css'
 import { ThemeProvider } from 'styled-components'
-import theme from './components/constants/theme'
+import theme from './constants/theme'
 
 import ErrorBoundry from './components/ErrorBoundry'
 import App from './components/App'
