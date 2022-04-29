@@ -23,10 +23,22 @@
   "scripts": {
     "lint": "eslint --ext .ts,.js,.tsx src",
     "typecheck": "./node_modules/.bin/tsc",
+    "coverage": "yarn test --coverage",
+    "open-coverage": "open coverage/lcov-report/index.html",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 8,
+        "functions": 14,
+        "lines": 4,
+        "statements": 4
+      }
+    }
   },
   "husky": {
     "hooks": {
