@@ -11,7 +11,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn typecheck
-      - run: yarn test
+      - run: yarn coverage
       - persist_to_workspace:
           root: .
           paths:
