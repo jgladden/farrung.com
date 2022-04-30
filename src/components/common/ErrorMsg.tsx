@@ -1,8 +1,9 @@
 import React from 'react'
+import Text from './Text'
 
 type Props = {
   error: any
 }
 export default function ErrorMsg({ error }: Props) {
-  return <p>{`${(error as Error).message}`}</p>
+  return <Text>{`${(error as Error).message}`}</Text>
 }
