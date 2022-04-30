@@ -3,23 +3,46 @@ export const config = {
 }
 
 export enum HttpMethods {
-  GET = 'GET'
+  GET = 'GET',
+  DELETE = 'DELETE',
+  POST = 'POST',
+  PATCH = 'PATCH',
+  PUT = 'PUT',
 }
 
+type Options = {
+  method: HttpMethods
+  headers?: Record<string, string>
+  body?: string
+};
+
 type FetchResourceParams = {
-  url: string
+  path: string
   domain?: string
-  params?: Record<string, string | number | null>
+  params?: Record<string, string>
   method?: HttpMethods
 }
 
-export async function fetchResource<Payload>({url, domain, params, method}: FetchResourceParams): Promise<Payload> {
-  const fetchUrl = `${domain || config.BASE_URL}${url}`
-  let res
-  switch(method) {
-    default:
-      res = await fetch(fetchUrl)
-  }
-  if (!res.ok) throw new Error(`Failed ${method || HttpMethods.GET} for ${fetchUrl} ${params ? `${params.toString()}` : ''}`)
-  return await res.json()
+export async function fetchResource<Payload>({path, domain = config.BASE_URL, params, method = HttpMethods.GET}: FetchResourceParams): Promise<Payload> {
+    const options: Options = { method, headers: { 'Content-Type': 'application/json' }}
+    let url = `${domain}${path}`
+    switch (method) {
+        case HttpMethods.POST:
+        case HttpMethods.PATCH:
+        case HttpMethods.PUT:
+            options.body = JSON.stringify(params)
+            break
+        default:
+          url = `${url}${params ? `?${new URLSearchParams(params)}` : ''}`;
+    }
+
+  const response = await fetch(url, options)
+  if (response.ok) return await response.json()
+    try {
+        const payload = await response.json()
+        throw new Error(`${url} ${payload.message}`)
+    } catch {
+      throw new Error(`Failed ${method} for ${url} ${params || ''}`)
+    }
 }
+
