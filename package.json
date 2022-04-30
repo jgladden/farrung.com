@@ -78,7 +78,9 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "fetch-mock": "^9.11.0",
     "husky": "^7.0.4",
+    "isomorphic-fetch": "^3.0.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2"
   }

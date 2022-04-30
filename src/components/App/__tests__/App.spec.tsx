@@ -1,17 +1,17 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
+import fetchMock from 'fetch-mock'
 import wrap from '../../../utils/testUtils'
+import { config } from '../../../utils/fetchUtils'
 
 import App from '../'
 
-jest.mock('react-query', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useQuery: () => ({
-    data: [{ id: 1, title: 'hello world' }],
-  }),
-}))
+fetchMock.get(`${config.BASE_URL}/todos`, {
+  body: [{ title: 'hello world', id: 1 }],
+  headers: { 'content-type': 'application/json' },
+})
 
-test('renders hello world', () => {
+test('renders hello world', async () => {
   render(wrap(<App />))
-  screen.getByText(/hello world/i)
+  await screen.findByText(/hello world/i)
 })
