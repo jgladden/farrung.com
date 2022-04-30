@@ -4,17 +4,23 @@ import reportWebVitals from './reportWebVitals'
 
 import './index.css'
 import { ThemeProvider } from 'styled-components'
-import theme from './constants/theme'
+import theme from './theme'
+
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import ErrorBoundry from './components/ErrorBoundry'
 import App from './components/App'
+
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <ErrorBoundry>
       <ThemeProvider theme={theme}>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </ThemeProvider>
     </ErrorBoundry>
   </React.StrictMode>

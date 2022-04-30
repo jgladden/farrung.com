@@ -36,14 +36,15 @@
       "!**/*d.ts",
       "!**/types.ts",
       "!src/index.tsx",
-      "!src/reportWebVitals.ts"
+      "!src/reportWebVitals.ts",
+      "!src/theme.ts"
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 0,
-        "functions": 14,
-        "lines": 4,
-        "statements": 4
+        "branches": 50,
+        "functions": 60,
+        "lines": 60,
+        "statements": 60
       }
     }
   },
@@ -80,6 +81,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "fetch-mock": "^9.11.0",
     "husky": "^7.0.4",
+    "isomorphic-fetch": "^3.0.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2"
   }
