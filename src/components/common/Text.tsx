@@ -1,21 +1,6 @@
 import React, { forwardRef } from 'react'
 import styled, { css } from 'styled-components'
-
-// types
 import { HTMLAttributes } from 'react'
-
-/*
-USE:
-
-// An html paragraph tag styled as an h2 with color of secondary, text aligned right and class of .p-as-h2
-
-import RdnaText from '@ringdna/common/src/components/RdnaText'
-
-<RdnaText variant="h2" component="p" color="neutral" align="right" className="p-as-h2">My Text</RdnaText>
-
-*/
-
-// If RdnaText has onClick, it automatically has cursor pointer
 
 export const variants = {
   h1: 'h1',
@@ -29,8 +14,6 @@ export const variants = {
   body1: 'body1',
   body2: 'body2',
   body3: 'body3',
-  meta: 'meta',
-  overline: 'overline',
 }
 
 export const components = {
@@ -46,17 +29,12 @@ export const components = {
   span: 'span',
 }
 
-export const colorpalettes = {
+export const palettes = {
   primary: 'primary',
   neutral: 'neutral',
   link: 'link',
   action: 'action',
   alert: 'alert',
-  info: 'info',
-  warning: 'warning',
-  salesforceLead: 'salesforceLead',
-  salesforceOpportunity: 'salesforceOpportunity',
-  success: 'success',
   contrast: 'contrast',
 }
 
@@ -69,14 +47,13 @@ export const alignments = {
 
 const mapVariants = (variant: keyof typeof variants) => {
   if (variant.includes('subtitle')) return 'h6'
-  if (variant.includes('body') || variant === 'meta') return 'span'
-  if (variant === variants.overline) return 'span'
+  if (variant.includes('body')) return 'span'
   return variant
 }
 
 type TypeBaseProps = {
   variant?: keyof typeof variants
-  color?: keyof typeof colorpalettes
+  color?: keyof typeof palettes
   align?: keyof typeof alignments
   bold?: boolean
   link?: boolean

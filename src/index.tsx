@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals'
 
 import './index.css'
 import { ThemeProvider } from 'styled-components'
-import theme from './constants/theme'
+import theme from './theme'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
 
