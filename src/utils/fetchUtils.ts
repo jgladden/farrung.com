@@ -1,5 +1,5 @@
 export const config = {
-  BASE_URL: 'https://jsonplaceholder.typicode.com'
+  BASE_URL: '' // https://jsonplaceholder.typicode.com'
 }
 
 export enum HttpMethods {
@@ -19,7 +19,7 @@ type Options = {
 type FetchResourceParams = {
   path: string
   domain?: string
-  params?: Record<string, string>
+  params?: Record<string, string | number>
   method?: HttpMethods
 }
 
@@ -33,7 +33,7 @@ export async function fetchResource<Payload>({path, domain = config.BASE_URL, pa
             options.body = JSON.stringify(params)
             break
         default:
-          url = `${url}${params ? `?${new URLSearchParams(params)}` : ''}`;
+          url = `${url}${params ? `?${new URLSearchParams(params as Record<string, string>)}` : ''}`;
     }
 
   const response = await fetch(url, options)
