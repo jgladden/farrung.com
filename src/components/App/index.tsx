@@ -27,7 +27,7 @@ export default function App() {
           data.map((item) => (
             <div key={item.id}>
               <Text component="p" onClick={() => setTodoId(item.id)}>
-                {item.title}
+                {`Title: ${item.title}`}
               </Text>
               <img src={`/images/${item.imageorder[0]}`} alt={item.title} />
             </div>
