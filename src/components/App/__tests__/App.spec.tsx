@@ -53,6 +53,6 @@ describe('portfolio spec', () => {
   })
 
   it('renders first portfolio item', () => {
-    screen.getByText(MOCK_PORTFOLIO_PAYLOAD[0].title)
+    screen.getByText(`Title: ${MOCK_PORTFOLIO_PAYLOAD[0].title}`)
   })
 })
