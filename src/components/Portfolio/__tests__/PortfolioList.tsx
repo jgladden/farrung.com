@@ -5,7 +5,7 @@ import wrap from '../../../utils/testUtils'
 import { config } from '../../../utils/fetchUtils'
 import { PortfolioItem } from '../api'
 
-import App from '../'
+import PortfolioList from '../PortfolioList'
 
 const MOCK_PORTFOLIO_PAYLOAD: { Items: PortfolioItem[] } = {
   Items: [
@@ -31,7 +31,7 @@ fetchMock.get(`${config.BASE_URL}/items`, {
 
 describe('portfolio spec', () => {
   beforeEach(async () => {
-    render(wrap(<App />))
+    render(wrap(<PortfolioList />))
     screen.getByText(/loading.../i)
     await waitForElementToBeRemoved(() => screen.getByText(/loading.../i))
   })
