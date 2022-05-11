@@ -10,36 +10,34 @@ type Props = {
 }
 
 export default function PortfolioNav({ selectedType, setSelectedType }: Props) {
-  console.log(selectedType)
   return (
     <StyledNav id="portfolioNav">
       {portfolioTypes.map((type) => (
-        <li key={type}>
-          <Text component="a" onClick={() => setSelectedType(type)}>
-            {type.toUpperCase()}
-          </Text>
-        </li>
+        <Text
+          key={type}
+          component="a"
+          onClick={() => setSelectedType(type)}
+          className={type === selectedType ? 'selected' : ''}
+        >
+          {type.toUpperCase()}
+        </Text>
       ))}
     </StyledNav>
   )
 }
 
-const StyledNav = styled.ul`
+const StyledNav = styled.div`
   display: flex;
   padding-left: ${({ theme }) => theme.spacing}px;
   a {
     color: #fff;
-  }
-  li {
     margin-right: 10px;
-    color: #fff;
     font-size: 11px;
     background-color: #000;
     padding: ${({ theme }) => theme.spacing}px ${({ theme }) => 2 * theme.spacing}px;
   }
 
-  li:hover {
-    color: #333333;
+  a:hover {
     background-color: #ff6f6f;
   }
 `

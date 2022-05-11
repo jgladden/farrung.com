@@ -1,28 +1,25 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useQuery } from 'react-query'
-import { fetchPortfolioItem, PortfolioItem, PortfolioType } from '../api'
+import { fetchPortfolioItem, PortfolioItem } from '../api'
 
 import Text from '../../common/Text'
 
 type Props = {
-  selectedType: PortfolioType
   items: PortfolioItem[]
 }
 
-export default function PortfolioList({ items, selectedType }: Props) {
+export default function PortfolioList({ items }: Props) {
   const [itemId, setItemId] = useState<string | undefined>()
   const item = useQuery(['item', itemId], () => fetchPortfolioItem({ id: itemId as string }), {
     enabled: !!itemId,
   })
 
-  const filteredItems = useMemo(() => items.filter((item) => item.type === selectedType), [selectedType, items])
-
   console.log(itemId, item.data)
 
   return (
     <ItemContainer>
-      {filteredItems.map((item) => (
+      {items.map((item) => (
         <div key={item.id}>
           <Text component="p" onClick={() => setItemId(item.id)}>
             {item.title}
