@@ -11,7 +11,13 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import ErrorBoundry from './components/ErrorBoundry'
 import App from './components/App'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(

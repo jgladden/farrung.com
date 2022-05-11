@@ -27,7 +27,7 @@ jobs:
       - run: yarn build
       - aws-s3/sync:
           from: build
-          to: 's3://farrung.com/'
+          to: 's3://farrung/'
 
 workflows:
   workflow:

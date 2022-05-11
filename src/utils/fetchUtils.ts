@@ -1,5 +1,5 @@
 export const config = {
-  BASE_URL: '' // https://jsonplaceholder.typicode.com'
+  BASE_URL: 'https://33wpflhok4.execute-api.us-east-1.amazonaws.com' // 'https://kv7ko48rl1.execute-api.us-west-1.amazonaws.com'
 }
 
 export enum HttpMethods {
@@ -19,7 +19,7 @@ type Options = {
 type FetchResourceParams = {
   path: string
   domain?: string
-  params?: Record<string, string | number>
+  params?: Record<string, any>
   method?: HttpMethods
 }
 

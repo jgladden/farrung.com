@@ -1,4 +1,4 @@
-import { fetchResource } from '../../../utils/fetchUtils'
+import { fetchResource, HttpMethods } from '../../../utils/fetchUtils'
 
 export type PortfolioItem = {
   id: string
@@ -6,30 +6,31 @@ export type PortfolioItem = {
   title: string
   client: string
   description: string
-  year: string
-  month: string
-  day: string
+  projectDate: number | string | null
   imageorder: string[]
-  link: string
   display: string
   rating: string
 }
 
-/*
-{
-  userId: number
-  id: number
-  title: string
-  completed: boolean
-}
+export const fetchPortfolio = async () =>
+  fetchResource<{ Items: PortfolioItem[] }>({
+    path: '/items',
+  })
 
+export const fetchPortfolioItem = async (params: { id: string }) =>
+  fetchResource<PortfolioItem>({
+    path: `/items/${params.id}`,
+  })
 
-type TodoParams = {
-  id: number
-}
+export const deletePortfolioItem = async (params: { id: string }) =>
+  fetchResource<PortfolioItem>({
+    path: `/items/${params.id}`,
+    method: HttpMethods.DELETE,
+  })
 
-*/
-
-export const fetchTodos = async () => fetchResource<PortfolioItem[]>({ path: '/portfolio.json' })
-
-// export const fetchTodo = async (params: TodoParams) => fetchResource<Todo>({ path: `/todos/${params.id}` })
+export const createPortfolioItem = async (params: PortfolioItem) =>
+  fetchResource<string>({
+    path: '/items',
+    params,
+    method: HttpMethods.PUT,
+  })
