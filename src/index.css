@@ -1,135 +1,112 @@
+
 @font-face {
-  font-family: 'Logical';
-  src: url('assets/fonts/Logical-Regular.eot');
-  src: url('assets/fonts/Logical-Regular.eot?#iefix') format('embedded-opentype'),
-    url('assets/fonts/Logical-Regular.woff2') format('woff2'), url('assets/fonts/Logical-Regular.woff') format('woff');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Logical';
-  src: url('assets/fonts/Logical-Bold.eot');
-  src: url('assets/fonts/Logical-Bold.eot?#iefix') format('embedded-opentype'), url('assets/fonts/Logical-Bold.woff2') format('woff2'),
-    url('assets/fonts/Logical-Bold.woff') format('woff');
-  font-weight: bold;
-  font-display: swap;
+  font-family: DinAlternateLight;
+  src: url("assets/fonts/din_alternate_light-webfont.eot");
+  src: url("assets/fonts/din_alternate_light-webfont.eot?#iefix") format("embedded-opentype"), 
+       url("assets/fonts/din_alternate_light-webfont.woff") format("woff"), 
+       url("assets/fonts/din_alternate_light-webfont.ttf") format("truetype"), 
+       url("assets/fonts/din_alternate_light-webfont.svg#DinAlternateLight") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-*::-webkit-scrollbar {
-  display: none;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-div {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font-family: 'Logical';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  vertical-align: baseline;
-}
-
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
+body, html {
+  height: 100%;
 }
 
 body {
-  line-height: 1;
-  background-color: #f7f7f7;
+  background: white url('assets/img/site/bg45.jpg');
+  font-size: 10px;
+}
+
+body, p, span, a, textarea {
+  font-family: Tahoma, Geneva, sans-serif;
+  color: #333333;
   font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 20px;
 }
 
-ol,
 ul {
-  list-style: none;
-  margin: 0;
+  overflow: auto;
+  width: auto;
 }
 
-blockquote,
-q {
-  quotes: none;
+/* TYPE */
+h1, h2, h3, h4, h5, h6 {
+  font-family: DinAlternateLight;
+  color: #333333;
+  font-weight: normal;
+  line-height: 1.2em;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
+h1 {
+  font-size: 11.8em;
+  letter-spacing: -.05em;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+h2 {
+  font-size: 10em;
+  letter-spacing: -.05em;
+  color: #b6b6b6;
 }
 
-:focus {
-  outline: 0;
+h3 {
+  font-size: 5em;
+  color: #b6b6b6;
 }
 
-.hidden {
-  display: none !important;
+h4 {
+  font-size: 3.6em;
 }
 
-.pull-right {
-  float: right;
+h5 {
+  font-size: 2.6em;
 }
 
-.pull-left {
-  float: left;
+article h3 {
+  margin: 5px 0;
 }
 
-textarea {
-  padding: 10px;
+@media (max-width: 1075px) {
+  body { font-size: 11px; }
 }
 
-button,
-[role='button'] {
-  cursor: pointer;
+@media (max-width: 768px) {
+  body { font-size: 9px; }
 }
 
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+@media (max-width: 568px) {
+  body { font-size: 6px; }
 }
 
-.styled-scrollbar::-webkit-scrollbar {
-  display: block;
-  -webkit-appearance: none;
-  width: 6px;
+@media (max-width: 480px) {
+  body { font-size: 5px; }
 }
-.styled-scrollbar::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: #cccccc;
+
+@media (max-width: 375px) {
+  body { font-size: 4px; }
 }
-.styled-scrollbar::-webkit-scrollbar-track-piece {
-  border-radius: 4px;
-  background-color: #eaeaea;
+
+@media (max-width: 320px) {
+  body { font-size: 3px; }
 }
+
+#contentWrapper {
+  padding: 0 15px;
+  position: relative;
+  left: 0;
+  transition:left .5s ease-out;
+}
+
+#contentWrapper.detailView {
+  left: -100%;
+}
+
+#contentWrapper > article {
+  background-color: #fff;
+  padding: 30px 20px;
+  border-bottom: 5px solid black;
+}
+
+
