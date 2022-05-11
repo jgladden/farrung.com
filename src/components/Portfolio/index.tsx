@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import './styles.css'
+import styled from 'styled-components'
 import { useQuery } from 'react-query'
 import { fetchPortfolio, PortfolioItem, PortfolioType, portfolioTypes } from './api'
 
@@ -35,12 +35,16 @@ export default function Portfolio() {
         <h2>a picture is worth a thousand words</h2>
         <h3>cliche for a reason</h3>
         {data && (
-          <div id="portfolio">
+          <PortfolioContainer>
             <PortfolioNav selectedType={selectedType} setSelectedType={setSelectedType} />
             <PortfolioList items={sortedItems[selectedType]} />
-          </div>
+          </PortfolioContainer>
         )}
       </article>
     </Loader>
   )
 }
+
+const PortfolioContainer = styled.div`
+  padding-top: ${({ theme }) => theme.spacing}px;
+`
