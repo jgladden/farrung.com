@@ -1,38 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { useQuery } from 'react-query'
-import { fetchPortfolio, fetchPortfolioItem } from '../api'
+import { fetchPortfolioItem, PortfolioItem, PortfolioType } from '../api'
 
-import Loader from '../../common/Loader'
-import ErrorMsg from '../../common/ErrorMsg'
 import Text from '../../common/Text'
 
-export default function List() {
-  const [itemId, setItemId] = useState<string | undefined>()
-  const { isLoading, error, data } = useQuery('portfolio', fetchPortfolio)
+type Props = {
+  selectedType: PortfolioType
+  items: PortfolioItem[]
+}
 
+export default function PortfolioList({ items, selectedType }: Props) {
+  const [itemId, setItemId] = useState<string | undefined>()
   const item = useQuery(['item', itemId], () => fetchPortfolioItem({ id: itemId as string }), {
     enabled: !!itemId,
   })
 
+  const filteredItems = useMemo(() => items.filter((item) => item.type === selectedType), [selectedType, items])
+
   console.log(itemId, item.data)
 
-  return error ? (
-    <ErrorMsg error={error} />
-  ) : (
-    <Loader isLoading={isLoading}>
-      <ItemContainer>
-        {data?.Items &&
-          data.Items.map((item) => (
-            <div key={item.id}>
-              <Text component="p" onClick={() => setItemId(item.id)}>
-                {item.title}
-              </Text>
-              <img src={`/images/${item.imageorder[0]}`} alt={item.title} />
-            </div>
-          ))}
-      </ItemContainer>
-    </Loader>
+  return (
+    <ItemContainer>
+      {filteredItems.map((item) => (
+        <div key={item.id}>
+          <Text component="p" onClick={() => setItemId(item.id)}>
+            {item.title}
+          </Text>
+          <img src={`/images/${item.imageorder[0]}`} alt={item.title} />
+        </div>
+      ))}
+    </ItemContainer>
   )
 }
 

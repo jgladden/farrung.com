@@ -28,6 +28,8 @@ body, p, span, a, textarea {
 }
 
 ul {
+  list-style: none;
+  margin: 0;
   overflow: auto;
   width: auto;
 }

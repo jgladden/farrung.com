@@ -1,8 +1,15 @@
 import { fetchResource, HttpMethods } from '../../../utils/fetchUtils'
 
+export enum PortfolioType {
+  ONLINE = 'online',
+  PRINT = 'print',
+}
+
+export const portfolioTypes = Object.values(PortfolioType) as Array<PortfolioType>
+
 export type PortfolioItem = {
   id: string
-  type: 'print' | 'online'
+  type: PortfolioType
   title: string
   client: string
   description: string

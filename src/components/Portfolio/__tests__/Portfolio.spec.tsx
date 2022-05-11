@@ -3,15 +3,15 @@ import { waitForElementToBeRemoved, render, screen } from '@testing-library/reac
 import fetchMock from 'fetch-mock'
 import wrap from '../../../utils/testUtils'
 import { config } from '../../../utils/fetchUtils'
-import { PortfolioItem } from '../api'
+import { PortfolioItem, PortfolioType } from '../api'
 
-import PortfolioList from '../PortfolioList'
+import Portfolio from '../'
 
 const MOCK_PORTFOLIO_PAYLOAD: { Items: PortfolioItem[] } = {
   Items: [
     {
       id: '15',
-      type: 'print',
+      type: PortfolioType.ONLINE,
       title: 'Farrung',
       client: 'Farrung',
       description:
@@ -31,7 +31,7 @@ fetchMock.get(`${config.BASE_URL}/items`, {
 
 describe('portfolio spec', () => {
   beforeEach(async () => {
-    render(wrap(<PortfolioList />))
+    render(wrap(<Portfolio />))
     screen.getByText(/loading.../i)
     await waitForElementToBeRemoved(() => screen.getByText(/loading.../i))
   })
