@@ -25,7 +25,7 @@ export const fetchPortfolio = async () =>
   })
 
 export const fetchPortfolioItem = async (params: { id: string }) =>
-  fetchResource<PortfolioItem>({
+  fetchResource<{ Item: PortfolioItem }>({
     path: `/items/${params.id}`,
   })
 
