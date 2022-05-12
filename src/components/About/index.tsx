@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import imgProcess from '../../assets/img/site/process.jpg'
 
+import Text from '../common/Text'
+
 export default function About() {
   return (
     <article id="aboutWrapper">
@@ -11,14 +13,14 @@ export default function About() {
       <DetailContainer>
         <DetailText>
           <h5>The big idea.</h5>
-          <p>
+          <Text component="p">
             You know your customers. We know how to reach them. At Farrung we specialize in helping
             you translate and position your message to ensure maximum impact with your customers.
-          </p>
-          <p>
+          </Text>
+          <Text component="p">
             A successful endeavor requires a smart plan. We have one, a process we have developed
             through trial and error that guides us every step of the way.
-          </p>
+          </Text>
         </DetailText>
         <DetailImg>
           <img src={imgProcess} alt="chart demonstrating farrung's process" />
@@ -39,7 +41,7 @@ const DetailContainer = styled.div`
 
   p {
     color: #666666;
-    padding-top: 5px;
+    padding-top: ${({ theme }) => theme.spacing}px;
     font-size: 14px;
   }
 
@@ -66,7 +68,7 @@ const DetailImg = styled.div`
     width: 100%;
   }
   @media only screen and (max-width: 900px) {
-    padding-top: 10px;
+    padding-top: ${({ theme }) => 2 * theme.spacing}px;
   }
   @media only screen and (max-width: 600px) {
     display: none;
