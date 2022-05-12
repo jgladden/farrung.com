@@ -7,17 +7,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import theme from './theme'
 
-import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
-import LanguageDetector from 'i18next-browser-languagedetector'
-import { translationInit } from './constants/translation'
-
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import ErrorBoundry from './components/ErrorBoundry'
 import App from './components/App'
-
-i18n.use(LanguageDetector).use(initReactI18next).init(translationInit)
 
 const queryClient = new QueryClient({
   defaultOptions: {
