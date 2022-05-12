@@ -1,19 +1,21 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import imgLogo from '../../assets/img/site/logo.gif'
+import { useTranslation } from 'react-i18next'
 
+import imgLogo from '../../assets/img/site/logo.gif'
 import Text from '../common/Text'
 
 const TODAY = new Date()
 const TODAY_DISPLAY = `${TODAY.getMonth() + 1}/${TODAY.getDate()}/${TODAY.getFullYear()}`
 
 export default function Header() {
+  const { t } = useTranslation()
   return (
     <HeaderContainer>
       <NavContainer>
-        <Text href="#about">about</Text>
-        <Text href="#work">work</Text>
-        <Text href="#connect">connect</Text>
+        <Text href="#about">{t('header.aboutCta')}</Text>
+        <Text href="#work">{t('header.workCta')}</Text>
+        <Text href="#connect">{t('header.connectCta')}</Text>
         <StyledDate>{TODAY_DISPLAY}</StyledDate>
       </NavContainer>
       <LogoContainer>
