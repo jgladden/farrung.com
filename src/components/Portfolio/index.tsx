@@ -1,7 +1,13 @@
 import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { useQuery } from 'react-query'
-import { fetchPortfolio, PortfolioItem, PortfolioType, portfolioTypes } from './api'
+import {
+  fetchPortfolio,
+  fetchPortfolioItem,
+  PortfolioItem,
+  PortfolioType,
+  portfolioTypes,
+} from './api'
 
 import Loader from '../common/Loader'
 import ErrorMsg from '../common/ErrorMsg'
@@ -12,7 +18,17 @@ export type SortedItems = Record<PortfolioType, PortfolioItem[]>
 
 export default function Portfolio() {
   const [selectedType, setSelectedType] = useState<PortfolioType>(portfolioTypes[0])
+  const [selectedItemId, setSelectedItemId] = useState<string | undefined>()
   const { isLoading, error, data } = useQuery('portfolio', fetchPortfolio)
+  const selectedItem = useQuery(
+    ['selectedItem', selectedItemId],
+    () => fetchPortfolioItem({ id: selectedItemId as string }),
+    {
+      enabled: !!selectedItemId,
+    }
+  )
+
+  console.log(selectedItem)
 
   const sortedItems = useMemo(() => {
     const sortedItems: SortedItems = {} as SortedItems
@@ -37,7 +53,10 @@ export default function Portfolio() {
         {data && (
           <PortfolioContainer>
             <PortfolioNav selectedType={selectedType} setSelectedType={setSelectedType} />
-            <PortfolioList items={sortedItems[selectedType]} />
+            <PortfolioList
+              setSelectedItemId={setSelectedItemId}
+              items={sortedItems[selectedType]}
+            />
           </PortfolioContainer>
         )}
       </article>

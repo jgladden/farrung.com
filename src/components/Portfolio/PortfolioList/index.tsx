@@ -1,48 +1,87 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { useQuery } from 'react-query'
-import { fetchPortfolioItem, PortfolioItem } from '../api'
+import { PortfolioItem } from '../api'
 
 import Text from '../../common/Text'
 
 type Props = {
   items: PortfolioItem[]
+  setSelectedItemId: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 
-export default function PortfolioList({ items }: Props) {
-  const [itemId, setItemId] = useState<string | undefined>()
-  const item = useQuery(['item', itemId], () => fetchPortfolioItem({ id: itemId as string }), {
-    enabled: !!itemId,
-  })
-
-  console.log(itemId, item.data)
-
+export default function PortfolioList({ items, setSelectedItemId }: Props) {
   return (
-    <ItemContainer>
-      {items.map((item) => (
-        <div key={item.id}>
-          <Text component="p" onClick={() => setItemId(item.id)}>
-            {item.title}
-          </Text>
-          <img src={`/images/${item.imageorder[0]}`} alt={item.title} />
-        </div>
+    <ListContainer>
+      {items.map((item, idx) => (
+        <ListItem
+          key={item.id}
+          onClick={() => setSelectedItemId(item.id)}
+          role="link"
+          tabIndex={idx}
+        >
+          <div>
+            <img src={`/images/${item.imageorder[0]}`} alt={item.title} />
+            <Text component="p">{item.title}</Text>
+          </div>
+        </ListItem>
       ))}
-    </ItemContainer>
+    </ListContainer>
   )
 }
 
-const ItemContainer = styled.div`
+const ListContainer = styled.div`
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
-  & > div {
-    width: 25%;
-    padding: 10px;
-    img {
-      width: 100%;
-    }
-  }
+  margin-left: -6px;
 `
+
+const ListItem = styled.div`
+  width: 20%;
+  padding: ${({ theme }) => theme.spacing}px;
+  cursor: pointer;
+
+  div {
+    padding: ${({ theme }) => `${3 * theme.spacing}px ${3 * theme.spacing}px ${theme.spacing}px`};
+    border: 1px solid #cccccc;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+  }
+  
+  p {
+    font-size: 10px;
+    padding-top: ${({ theme }) => theme.spacing}px;
+  }
+}
+
+@media (max-width:1200px) {
+  & {
+    width: 25%;
+  }
+}
+
+@media (max-width:900px) {
+  & {
+    width: 33.3%;
+  }
+}
+
+@media (max-width:480px) {
+  & {
+    width: 50%;
+  }
+}
+
+@media (max-width:320px) {
+ & {
+    width: 100%;
+  }
+}
+`
+
 /*
 const pi: PortfolioItem[] = [
   {
