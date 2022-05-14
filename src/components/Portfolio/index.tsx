@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react'
-import styled from 'styled-components'
 import { useQuery } from 'react-query'
 import { fetchPortfolio, PortfolioItem, PortfolioType, portfolioTypes } from './api'
 
+import Text from '../common/Text'
 import Loader from '../common/Loader'
 import ErrorMsg from '../common/ErrorMsg'
 import Modal from '../common/Modal'
@@ -49,24 +49,26 @@ export default function Portfolio() {
           )}
         </Modal>
         <article>
-          <h1 id="work">WORK</h1>
-          <h2>a picture is worth a thousand words</h2>
-          <h3>cliche for a reason</h3>
+          <Text variant="h1" component="h1" id="work">
+            WORK
+          </Text>
+          <Text variant="h2" component="h2" color="neutral">
+            a picture is worth a thousand words
+          </Text>
+          <Text variant="h3" component="h3" color="neutral">
+            cliche for a reason
+          </Text>
           {portfolioQuery.data && (
-            <PortfolioContainer>
+            <div>
               <PortfolioNav selectedType={selectedType} setSelectedType={setSelectedType} />
               <PortfolioList
                 setSelectedItemId={setSelectedItemId}
                 items={sortedItems[selectedType]}
               />
-            </PortfolioContainer>
+            </div>
           )}
         </article>
       </>
     </Loader>
   )
 }
-
-const PortfolioContainer = styled.div`
-  padding-top: ${({ theme }) => theme.spacing}px;
-`

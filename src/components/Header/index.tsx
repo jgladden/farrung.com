@@ -11,10 +11,18 @@ export default function Header() {
   return (
     <HeaderContainer>
       <NavContainer>
-        <Text href="#about">About</Text>
-        <Text href="#work">Work</Text>
-        <Text href="#connect">Connect</Text>
-        <StyledDate>{TODAY_DISPLAY}</StyledDate>
+        <Text variant="h4" href="#about">
+          About
+        </Text>
+        <Text variant="h4" href="#work">
+          Work
+        </Text>
+        <Text variant="h4" href="#connect">
+          Connect
+        </Text>
+        <Text variant="meta" component="p">
+          {TODAY_DISPLAY}
+        </Text>
       </NavContainer>
       <LogoContainer>
         <StyledLogo src={imgLogo} alt="Farrung Logo" />
@@ -27,49 +35,27 @@ const HeaderContainer = styled.header`
   padding-top: ${({ theme }) => 3 * theme.spacing}px;
 `
 const NavContainer = styled.nav`
-  padding: 25px 15px 10px 15px;
-  background-color: #fff;
-  float: left;
+  display: inline-block;
+  padding: ${({ theme }) => `${2 * theme.spacing}px ${4 * theme.spacing}px`};
+  background-color: ${({ theme }) => theme.palette.background.main};
   margin-bottom: ${({ theme }) => 4 * theme.spacing}px;
-  overflow: hidden;
-  width: auto;
-
   a {
-    color: #333;
     padding-left: ${({ theme }) => 2 * theme.spacing}px;
-    font-family: DinAlternateLight;
-    font-size: 30px;
-    letter-spacing: -0.07em;
   }
-
   a:first-child {
     padding-left: 0;
   }
+`
 
-  a:hover {
-    color: #ff6f6f;
-  }
-`
-const StyledDate = styled.p`
-  padding-top: 5px;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 12px;
-  color: #333333;
-`
 const LogoContainer = styled.p`
-  clear: left;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => 3 * theme.spacing}px;
   position: relative;
 `
 
 const slideUp = keyframes`
-  0% { 
-    top: 200px;
-  }
-  100% { 
-    top: 0;
-  }
+  0% { top: 200px; }
+  100% {  top: 0; }
 `
 
 const StyledLogo = styled.img`

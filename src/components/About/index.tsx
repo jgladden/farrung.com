@@ -7,12 +7,20 @@ import Text from '../common/Text'
 export default function About() {
   return (
     <article id="aboutWrapper">
-      <h1 id="about">ABOUT</h1>
-      <h2>a winning message requires you speak the language</h2>
-      <h3>we can translate</h3>
+      <Text variant="h1" component="h1" id="about">
+        ABOUT
+      </Text>
+      <Text variant="h2" component="h2" color="neutral">
+        a winning message requires you speak the language
+      </Text>
+      <Text variant="h3" component="h3" color="neutral">
+        we can translate
+      </Text>
       <DetailContainer>
         <DetailText>
-          <h5>The big idea.</h5>
+          <Text variant="h5" component="h5">
+            The big idea.
+          </Text>
           <Text component="p">
             You know your customers. We know how to reach them. At Farrung we specialize in helping
             you translate and position your message to ensure maximum impact with your customers.
@@ -35,19 +43,13 @@ const DetailContainer = styled.div`
   width: auto;
   display: flex;
 
-  h5 {
-    font-size: 20px;
-  }
-
   p {
-    color: #666666;
     padding-top: ${({ theme }) => theme.spacing}px;
-    font-size: 14px;
   }
 
   @media only screen and (max-width: 900px) {
-    & div {
-      float: none;
+    display: block;
+    div {
       width: 100%;
     }
   }

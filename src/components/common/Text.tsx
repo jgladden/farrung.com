@@ -8,12 +8,11 @@ export const variants = {
   h3: 'h3',
   h4: 'h4',
   h5: 'h5',
-  h6: 'h6',
-  subtitle1: 'subtitle1',
-  subtitle2: 'subtitle2',
   body1: 'body1',
   body2: 'body2',
   body3: 'body3',
+  body4: 'body4',
+  meta: 'meta',
 }
 
 export const components = {
@@ -23,7 +22,6 @@ export const components = {
   h3: 'h3',
   h4: 'h4',
   h5: 'h5',
-  h6: 'h6',
   p: 'p',
   caption: 'caption',
   span: 'span',
@@ -32,6 +30,7 @@ export const components = {
 export const palettes = {
   primary: 'primary',
   neutral: 'neutral',
+  dark: 'dark',
   link: 'link',
   action: 'action',
   alert: 'alert',
@@ -46,8 +45,7 @@ export const alignments = {
 }
 
 const mapVariants = (variant: keyof typeof variants) => {
-  if (variant.includes('subtitle')) return 'h6'
-  if (variant.includes('body')) return 'span'
+  if (variant.includes('body') || variant === 'meta') return 'span'
   return variant
 }
 
@@ -63,7 +61,6 @@ type TypeBaseProps = {
 }
 
 const StyledText = styled.p<TypeBaseProps>`
-  font-family: ${(props) => props.theme.typography.fontFamily};
   ${(props) => props.variant && { ...props.theme.typography[props.variant] }}
   ${(props) =>
     props.color &&
@@ -80,17 +77,13 @@ const StyledText = styled.p<TypeBaseProps>`
     props.link &&
     css`
       cursor: pointer;
-      &:hover {
-        text-decoration: underline;
-      }
     `}
   ${(props) =>
     props.href &&
     css`
-      color: ${props.theme.palette.text.link};
       text-decoration: none;
       &:hover {
-        text-decoration: underline;
+        color: ${props.theme.palette.text.link};
       }
     `}
 `
@@ -103,7 +96,19 @@ type Props = TypeBaseProps &
   }
 
 const Text = forwardRef(
-  ({ bold, variant = 'body1', color = 'primary', children, component, className, align, ...rest }: Props, ref) => (
+  (
+    {
+      bold,
+      variant = 'body1',
+      color = 'primary',
+      children,
+      component,
+      className,
+      align,
+      ...rest
+    }: Props,
+    ref
+  ) => (
     <StyledText
       // @ts-ignore
       as={component || (rest.href ? 'a' : mapVariants(variant))}

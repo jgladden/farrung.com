@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import theme from './theme'
+import theme from './constants/theme'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
 

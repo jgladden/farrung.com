@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { useQuery } from 'react-query'
 import { fetchPortfolioItem, PortfolioItem } from '../api'
 
+import Text from '../../common/Text'
 import Loader from '../../common/Loader'
 import ErrorMsg from '../../common/ErrorMsg'
 
@@ -40,13 +41,17 @@ export default function PortfolioModal({ selectedItemId, setSelectedItemId, item
           <PortfolioDetailContainer>
             <PortfolioItemDetails>
               <DetailNav>
-                <p id="type">{item.type.toUpperCase()}</p>
+                <Text variant="h5" component="h5" color="neutral" id="type">
+                  {item.type.toUpperCase()}
+                </Text>
                 <div>
                   <button id="prevBtn" onClick={() => setSelectedItemId(prevId)}></button>
                   <button id="nextBtn" onClick={() => setSelectedItemId(nextId)}></button>
                 </div>
               </DetailNav>
-              <h5>{item.title}</h5>
+              <Text variant="h5" component="h5" color="neutral">
+                {item.title}
+              </Text>
               <DetailDescription dangerouslySetInnerHTML={{ __html: item.description }} />
             </PortfolioItemDetails>
             <PortfolioDetailImageWrapper>
@@ -159,9 +164,6 @@ const DetailNav = styled.div`
 
   #type {
     float: left;
-    color: #b6b6b6;
-    font-family: DinAlternateLight;
-    font-size: 26px;
     padding-left: 10px;
     padding-top: 2px;
   }
