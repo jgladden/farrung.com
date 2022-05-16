@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { fetchPortfolio, PortfolioItem, PortfolioType, portfolioTypes } from './api'
 
-import Text from '../common/Text'
+import Text, { TextColor, TextComponent } from '../common/Text'
 import Loader from '../common/Loader'
 import ErrorMsg from '../common/ErrorMsg'
 import Modal from '../common/Modal'
@@ -49,13 +49,13 @@ export default function Portfolio() {
           )}
         </Modal>
         <article>
-          <Text variant="h1" component="h1" id="work">
+          <Text component={TextComponent.H5} id="work">
             WORK
           </Text>
-          <Text variant="h2" component="h2" color="neutral">
+          <Text component={TextComponent.H2} color={TextColor.NEUTRAL}>
             a picture is worth a thousand words
           </Text>
-          <Text variant="h3" component="h3" color="neutral">
+          <Text component={TextComponent.H3} color={TextColor.NEUTRAL}>
             cliche for a reason
           </Text>
           {portfolioQuery.data && (

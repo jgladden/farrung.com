@@ -21,7 +21,7 @@ export default function PortfolioList({ items, setSelectedItemId }: Props) {
         >
           <div>
             <img src={`/images/${item.imageorder[0]}`} alt={item.title} />
-            <Text component="p">{item.title}</Text>
+            <Text>{item.title}</Text>
           </div>
         </ListItem>
       ))}

@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import imgLogo from '../../assets/img/site/logo.gif'
-import Text from '../common/Text'
+import Text, { TextVariant } from '../common/Text'
 
 const TODAY = new Date()
 const TODAY_DISPLAY = `${TODAY.getMonth() + 1}/${TODAY.getDate()}/${TODAY.getFullYear()}`
@@ -11,18 +11,16 @@ export default function Header() {
   return (
     <HeaderContainer>
       <NavContainer>
-        <Text variant="h4" href="#about">
+        <Text variant={TextVariant.H4} href="#about">
           About
         </Text>
-        <Text variant="h4" href="#work">
+        <Text variant={TextVariant.H4} href="#work">
           Work
         </Text>
-        <Text variant="h4" href="#connect">
+        <Text variant={TextVariant.H4} href="#connect">
           Connect
         </Text>
-        <Text variant="meta" component="p">
-          {TODAY_DISPLAY}
-        </Text>
+        <Text variant={TextVariant.META}>{TODAY_DISPLAY}</Text>
       </NavContainer>
       <LogoContainer>
         <StyledLogo src={imgLogo} alt="Farrung Logo" />

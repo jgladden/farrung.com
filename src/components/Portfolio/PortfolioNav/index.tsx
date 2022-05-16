@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { PortfolioType, portfolioTypes } from '../api'
 
-import Text from '../../common/Text'
+import Text, { TextComponent } from '../../common/Text'
 
 type Props = {
   selectedType: PortfolioType
@@ -15,7 +15,7 @@ export default function PortfolioNav({ selectedType, setSelectedType }: Props) {
       {portfolioTypes.map((type) => (
         <Text
           key={type}
-          component="a"
+          component={TextComponent.A}
           onClick={() => setSelectedType(type)}
           className={type === selectedType ? 'selected' : ''}
         >

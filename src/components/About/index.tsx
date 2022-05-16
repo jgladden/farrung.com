@@ -2,30 +2,28 @@ import React from 'react'
 import styled from 'styled-components'
 import imgProcess from '../../assets/img/site/process.jpg'
 
-import Text from '../common/Text'
+import Text, { TextColor, TextComponent } from '../common/Text'
 
 export default function About() {
   return (
     <article id="aboutWrapper">
-      <Text variant="h1" component="h1" id="about">
+      <Text component={TextComponent.H1} id="about">
         ABOUT
       </Text>
-      <Text variant="h2" component="h2" color="neutral">
+      <Text component={TextComponent.H2} color={TextColor.NEUTRAL}>
         a winning message requires you speak the language
       </Text>
-      <Text variant="h3" component="h3" color="neutral">
+      <Text component={TextComponent.H3} color={TextColor.NEUTRAL}>
         we can translate
       </Text>
       <DetailContainer>
         <DetailText>
-          <Text variant="h5" component="h5">
-            The big idea.
-          </Text>
-          <Text component="p">
+          <Text component={TextComponent.H5}>The big idea.</Text>
+          <Text>
             You know your customers. We know how to reach them. At Farrung we specialize in helping
             you translate and position your message to ensure maximum impact with your customers.
           </Text>
-          <Text component="p">
+          <Text>
             A successful endeavor requires a smart plan. We have one, a process we have developed
             through trial and error that guides us every step of the way.
           </Text>

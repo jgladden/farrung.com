@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { useQuery } from 'react-query'
 import { fetchPortfolioItem, PortfolioItem } from '../api'
 
-import Text from '../../common/Text'
+import Text, { TextColor, TextComponent } from '../../common/Text'
 import Loader from '../../common/Loader'
 import ErrorMsg from '../../common/ErrorMsg'
 
@@ -41,7 +41,7 @@ export default function PortfolioModal({ selectedItemId, setSelectedItemId, item
           <PortfolioDetailContainer>
             <PortfolioItemDetails>
               <DetailNav>
-                <Text variant="h5" component="h5" color="neutral" id="type">
+                <Text component={TextComponent.H5} color={TextColor.NEUTRAL} id="type">
                   {item.type.toUpperCase()}
                 </Text>
                 <div>
@@ -49,7 +49,7 @@ export default function PortfolioModal({ selectedItemId, setSelectedItemId, item
                   <button id="nextBtn" onClick={() => setSelectedItemId(nextId)}></button>
                 </div>
               </DetailNav>
-              <Text variant="h5" component="h5" color="neutral">
+              <Text component={TextComponent.H5} color={TextColor.NEUTRAL}>
                 {item.title}
               </Text>
               <DetailDescription dangerouslySetInnerHTML={{ __html: item.description }} />

@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Text from '../common/Text'
+import Text, { TextColor, TextVariant } from '../common/Text'
 
 export default function Footer() {
   return (
     <FooterContainer>
-      <Text variant="meta" color="contrast">
+      <Text variant={TextVariant.META} color={TextColor.CONTRAST}>
         copyright 2011 farrung
       </Text>
     </FooterContainer>

@@ -1,25 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Text from '../common/Text'
+import Text, { TextColor, TextComponent, TextVariant } from '../common/Text'
 
 export default function Contact() {
   //       <FormContainer />
   return (
     <ConnectContainer id="connectWrapper">
-      <Text variant="h1" component="h1" id="connect">
+      <Text component={TextComponent.H1} id="connect">
         CONNECT
       </Text>
-      <Text variant="h2" component="h2" color="neutral">
+      <Text component={TextComponent.H2} color={TextColor.NEUTRAL}>
         smart brand messages are concise not comprehensive
       </Text>
-      <Text variant="h3" component="h3" color="neutral">
+      <Text component={TextComponent.H3} color={TextColor.NEUTRAL}>
         we say more with less
       </Text>
-      <Text variant="h3" component="h3" color="neutral">
+      <Text component={TextComponent.H3} color={TextColor.NEUTRAL}>
         TALK TO US
       </Text>
-      <Text variant="meta" component="p">
+      <Text variant={TextVariant.META} component={TextComponent.SPAN}>
         | 1322 N. Orange Dr., Suite #202 | Los Angeles, CA 90028 | P: 323.875.8319 |
       </Text>
     </ConnectContainer>
