@@ -100,6 +100,7 @@ const StyledText = styled.p<TextProps>`
   ${(props) =>
     (props.link || props.href) &&
     css`
+      cursor: pointer;
       text-decoration: none;
       &:hover {
         color: ${props.theme.palette.text.link};

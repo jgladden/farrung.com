@@ -32,8 +32,7 @@ fetchMock.get(`${config.BASE_URL}/items`, {
 describe('portfolio spec', () => {
   beforeEach(async () => {
     render(wrap(<Portfolio />))
-    screen.getByText(/loading.../i)
-    await waitForElementToBeRemoved(() => screen.getByText(/loading.../i))
+    await waitForElementToBeRemoved(() => screen.getByRole('progressbar', { name: '' }))
   })
 
   it('renders first portfolio item', () => {

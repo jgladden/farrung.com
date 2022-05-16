@@ -119,7 +119,6 @@ const PortfolioItemDetails = styled.div`
   h5 {
     padding-top: 5px;
     width: 1000px;
-    font-size: 26px;
   }
 
   @media only screen and (max-width: 920px) {
@@ -136,11 +135,8 @@ const PortfolioItemDetails = styled.div`
 const DetailDescription = styled.div`
   overflow: hidden;
   margin-bottom: 10px;
-  p {
-    font-size: 13px;
-    line-height: 18px;
-    padding-top: 3px;
-  }
+  ${({ theme }) => theme.typography.body2}
+  padding-top: 3px;
 `
 
 const DetailNav = styled.div`
@@ -152,7 +148,7 @@ const DetailNav = styled.div`
   #closeBtn {
     float: left;
     display: block;
-    background: url('../../../../assets/img/site/close_x.gif') no-repeat;
+    background: url('../../../assets/img/site/close_x.gif') no-repeat;
     width: 30px;
     height: 23px;
     border-right: 1px solid #666666;
@@ -183,7 +179,7 @@ const DetailNav = styled.div`
   }
 
   #prevBtn {
-    background: url('../../../../assets/img/site/arrow_left.gif') center center no-repeat;
+    background: url('../../../assets/img/site/arrow_left.gif') center center no-repeat;
     border-right: 1px solid #666666;
     margin-right: 10px;
     cursor: pointer;
@@ -194,7 +190,7 @@ const DetailNav = styled.div`
   }
 
   #nextBtn {
-    background: url('../../../../assets/img/site/arrow_right.gif') center center no-repeat;
+    background: url('../../../assets/img/site/arrow_right.gif') center center no-repeat;
     border-left: 1px solid #666666;
   }
 

@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components'
 export default function LoadingCircle() {
   return (
     <SpinnerContainer>
-      <div />
+      <div role="progressbar" />
     </SpinnerContainer>
   )
 }
