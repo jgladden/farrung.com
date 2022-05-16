@@ -34,41 +34,42 @@ export default function Portfolio() {
     setSelectedItemId(undefined)
   }
 
-  return portfolioQuery.error ? (
-    <ErrorMsg error={portfolioQuery.error} />
-  ) : (
-    <Loader isLoading={portfolioQuery.isLoading}>
-      <>
-        <Modal open={!!selectedItemId} onClose={onCloseModal} width="100%" height="100%">
-          {selectedItemId && (
-            <PortfolioModal
-              items={sortedItems[selectedType]}
-              setSelectedItemId={setSelectedItemId}
-              selectedItemId={selectedItemId}
-            />
-          )}
-        </Modal>
-        <article>
-          <Text component={TextComponent.H5} id="work">
-            WORK
-          </Text>
-          <Text component={TextComponent.H2} color={TextColor.NEUTRAL}>
-            a picture is worth a thousand words
-          </Text>
-          <Text component={TextComponent.H3} color={TextColor.NEUTRAL}>
-            cliche for a reason
-          </Text>
-          {portfolioQuery.data && (
-            <div>
-              <PortfolioNav selectedType={selectedType} setSelectedType={setSelectedType} />
-              <PortfolioList
-                setSelectedItemId={setSelectedItemId}
-                items={sortedItems[selectedType]}
-              />
-            </div>
-          )}
-        </article>
-      </>
-    </Loader>
+  return (
+    <>
+      <Modal open={!!selectedItemId} onClose={onCloseModal} width="100%" height="100%">
+        {selectedItemId && (
+          <PortfolioModal
+            items={sortedItems[selectedType]}
+            setSelectedItemId={setSelectedItemId}
+            selectedItemId={selectedItemId}
+          />
+        )}
+      </Modal>
+      <article>
+        <Text component={TextComponent.H1} id="work">
+          WORK
+        </Text>
+        <Text component={TextComponent.H2} color={TextColor.NEUTRAL}>
+          a picture is worth a thousand words
+        </Text>
+        <Text component={TextComponent.H3} color={TextColor.NEUTRAL}>
+          cliche for a reason
+        </Text>
+        <Loader isLoading={portfolioQuery.isLoading}>
+          <>
+            {portfolioQuery.error && <ErrorMsg error={portfolioQuery.error} />}
+            {portfolioQuery.data && (
+              <div>
+                <PortfolioNav selectedType={selectedType} setSelectedType={setSelectedType} />
+                <PortfolioList
+                  setSelectedItemId={setSelectedItemId}
+                  items={sortedItems[selectedType]}
+                />
+              </div>
+            )}
+          </>
+        </Loader>
+      </article>
+    </>
   )
 }

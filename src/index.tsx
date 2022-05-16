@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import reportWebVitals from './reportWebVitals'
 
 import './index.css'
-import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import theme from './constants/theme'
 
@@ -25,11 +24,9 @@ root.render(
   <React.StrictMode>
     <ErrorBoundry>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <QueryClientProvider client={queryClient}>
-            <App />
-          </QueryClientProvider>
-        </BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </ThemeProvider>
     </ErrorBoundry>
   </React.StrictMode>

@@ -1,4 +1,3 @@
-
 const palette = {
   text: {   
     primary: "#333",
@@ -11,8 +10,9 @@ const palette = {
   },
   background: {
     main: "#FFF",
-    light: "#FFF",
+    light: "#F1F1F1",
     dark: "#000",
+    link: "#ff6f6f",
   }
 }
 

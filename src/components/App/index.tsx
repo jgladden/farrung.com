@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import Header from '../Header'
 import About from '../About'
@@ -7,34 +8,24 @@ import Contact from '../Contact'
 import Footer from '../Footer'
 
 export default function App() {
+  // <Detail />
   return (
-    <>
-      <section id="contentWrapper" className={''}>
-        <Header />
-        <About />
-        <Portfolio />
-        <Contact />
-        <Footer />
-      </section>
-    </>
+    <ContentContainer>
+      <Header />
+      <About />
+      <Portfolio />
+      <Contact />
+      <Footer />
+    </ContentContainer>
   )
 }
 
-/*
-(
-    <>
-      <section 
-        id='contentWrapper'
-        className={''}
-      >    
-        <Header />
-        <About />
-        <Portfolio />
-        <Contact />
-        <Footer />
-      </section>
-      <SliderNav />
-      <Detail />
-    </>      
-  )
-  */
+const ContentContainer = styled.section`
+  padding: 0 ${({ theme }) => 2 * theme.spacing}px;
+  position: relative;
+  & > article {
+    background-color: ${({ theme }) => theme.palette.background.main};
+    padding: ${({ theme }) => `${5 * theme.spacing}px ${3 * theme.spacing}px`};
+    margin-bottom: ${({ theme }) => 2 * theme.spacing}px;
+  }
+`
